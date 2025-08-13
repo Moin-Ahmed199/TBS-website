@@ -1,4 +1,5 @@
 import React from "react";
+import logo from '../../assets/images/logo.webp'
 
 function Navbar() {
   return (
@@ -8,7 +9,7 @@ function Navbar() {
         className="navbar-brand d-flex align-items-center px-4 px-lg-5 mx-sm-0 btn-color navbar-margin"
       >
         <img
-          src=""
+          src={logo}
           alt="Logo"
           style={{ marginRight: "10px" }}
           className="img-design"
