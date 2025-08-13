@@ -5,6 +5,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import './App.css'
 
 import Navbar from './Components/Header/Header'
+import Footer from './Components/Footer/Footer'
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
     <>
      
      <Navbar/>
+     <Footer/>
      
 
 
