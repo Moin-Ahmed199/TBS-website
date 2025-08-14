@@ -1,7 +1,27 @@
-import React from "react";
-import logo from '../../assets/images/logo.webp'
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import logo from "../../assets/images/logo.webp";
 
 function Navbar() {
+  const [heading, setHeading] = useState("The Brighten Stars Academy");
+
+  useEffect(() => {
+    const updateHeading = () => {
+      if (window.innerWidth <= 736) {
+        setHeading("TBS Academy");
+      } else {
+        setHeading("The Brighten Stars Academy");
+      }
+    };
+
+    updateHeading(); // Run once on load
+    window.addEventListener("resize", updateHeading);
+
+    return () => {
+      window.removeEventListener("resize", updateHeading);
+    };
+  }, []);
+
   return (
     <nav className="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
       <a
@@ -15,7 +35,7 @@ function Navbar() {
           className="img-design"
         />
         <h2 className="m-0 text-white" id="main-heading">
-          The Brighten Stars Academy
+          {heading}
         </h2>
       </a>
 
@@ -45,7 +65,7 @@ function Navbar() {
         </div>
 
         <a
-          href="Joinnow.html"
+          href="Joinnow.jsx"
           className="btn btn-color py-4 px-lg-5 d-none d-lg-block"
         >
           Join Now <i className="bi bi-arrow-right ms-3"></i>
@@ -54,6 +74,5 @@ function Navbar() {
     </nav>
   );
 }
-
 
 export default Navbar;

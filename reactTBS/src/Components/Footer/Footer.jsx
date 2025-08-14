@@ -1,6 +1,28 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import emailjs from "emailjs-com";
 
 function Footer() {
+  const [statusMessage, setStatusMessage] = useState("");
+
+  useEffect(() => {
+    emailjs.init("ERjPXzSPAN03jFH3j"); // your public key
+  }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm("service_8do8d3k", "template_jzn3vle", e.target)
+      .then(() => {
+        setStatusMessage("Thanks for subscribing!");
+        e.target.reset();
+      })
+      .catch((error) => {
+        console.error("FAILED...", error);
+        setStatusMessage("Something went wrong. Please try again.");
+      });
+  };
+
   return (
     <div
       className="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn"
@@ -11,16 +33,16 @@ function Footer() {
           {/* Quick Links */}
           <div className="col-lg-4 col-md-6 d-flex flex-column">
             <h4 className="text-white mb-3">Quick Link</h4>
-            <a href="#">
-              <i className="bi bi-arrow-right-short me-2"></i>About Us
+            <a href="#" className="text-white">
+              <i className="bi bi-arrow-right-short me-2 "></i>About Us
             </a>
-            <a href="#">
+            <a href="#" className="text-white">
               <i className="bi bi-arrow-right-short me-2"></i>Contact Us
             </a>
-            <a href="#">
+            <a href="#" className="text-white">
               <i className="bi bi-arrow-right-short me-2"></i>Complaint
             </a>
-            <a href="#">
+            <a href="#" className="text-white">
               <i className="bi bi-arrow-right-short me-2"></i>FAQs &amp; Help
             </a>
           </div>
@@ -62,6 +84,7 @@ function Footer() {
 
             <form
               id="newsletter-form"
+              onSubmit={handleSubmit}
               className="position-relative mx-auto"
               style={{ maxWidth: "400px" }}
             >
@@ -80,12 +103,11 @@ function Footer() {
               </button>
             </form>
 
-            <p
-              id="status-message"
-              style={{ display: "none", color: "green" }}
-            >
-              Thanks for subscribing!
-            </p>
+            {statusMessage && (
+              <p style={{ color: statusMessage.includes("Thanks") ? "green" : "red" }}>
+                {statusMessage}
+              </p>
+            )}
           </div>
         </div>
       </div>

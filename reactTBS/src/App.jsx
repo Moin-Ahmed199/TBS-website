@@ -6,6 +6,7 @@ import './App.css'
 
 import Navbar from './Components/Header/Header'
 import Footer from './Components/Footer/Footer'
+import Testimonials from './Components/Testimonials/Testimonials'
 
 function App() {
 
@@ -13,6 +14,8 @@ function App() {
     <>
      
      <Navbar/>
+     <Testimonials/>
+
      <Footer/>
      
 
